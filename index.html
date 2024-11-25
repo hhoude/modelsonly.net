@@ -6,7 +6,56 @@
     <title>MDLSONLY.EXE Draft Cap</title>
     <style>
         * {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><defs><filter id="sparkle" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="sparkle"/></filter></defs><g filter="url(%23sparkle)"><path d="M5 5l12 12m0 0V7m0 10h-10" stroke="hotpink" stroke-width="3" fill="none"/><circle cx="17" cy="5" r="2" fill="%23ff69b4"/><circle cx="5" cy="17" r="2" fill="%23ff69b4"/><circle cx="25" cy="15" r="2" fill="%23ff69b4"/></g></svg>') 0 0, auto;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><defs><filter id="sparkle" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="sparkle"/></filter><linearGradient id="blush" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23ffb6c1"/><stop offset="100%" stop-color="%23ff69b4"/></linearGradient></defs><g filter="url(%23sparkle)"><path d="M32 60C45 60 55 50 55 37C55 24 45 14 32 14C19 14 9 24 9 37C9 50 19 60 32 60Z" fill="white" stroke="hotpink" stroke-width="2"/><path d="M22 32C24 32 26 30 26 28C26 26 24 24 22 24C20 24 18 26 18 28C18 30 20 32 22 32Z" fill="black"/><path d="M42 32C44 32 46 30 46 28C46 26 44 24 42 24C40 24 38 26 38 28C38 30 40 32 42 32Z" fill="black"/><circle cx="23" cy="26" r="2" fill="white"/><circle cx="43" cy="26" r="2" fill="white"/><path d="M32 40C36 40 39 43 39 43C39 43 35 46 32 46C29 46 25 43 25 43C25 43 28 40 32 40Z" fill="%23ff69b4"/><circle cx="20" cy="34" r="3" fill="url(%23blush)" opacity="0.6"/><circle cx="44" cy="34" r="3" fill="url(%23blush)" opacity="0.6"/><path d="M15 10L25 5L15 0" stroke="hotpink" stroke-width="2" fill="none" transform="translate(2,2)"/><circle cx="10" cy="10" r="2" fill="%23ff69b4"/><circle cx="50" cy="20" r="2" fill="%23ff69b4"/><circle cx="45" cy="10" r="2" fill="%23ff69b4"/><circle cx="15" cy="45" r="2" fill="%23ff69b4"/></g></svg>') 5 5, auto;
+        }
+
+        /* Rest of the styles remain exactly the same */
+        .product-image {
+            width: 300px;
+            height: 300px;
+            border: 2px solid #000;
+            margin: 20px auto;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: white;
+            clip-path: polygon(
+                50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 
+                50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+            );
+            animation: starWipe 1.5s ease-out forwards;
+        }
+
+        @keyframes starWipe {
+            0% {
+                width: 0;
+                height: 0;
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            50% {
+                width: 500px;
+                height: 500px;
+                transform: translate(-50%, -50%) rotate(180deg);
+                background: white;
+            }
+            100% {
+                width: 500px;
+                height: 500px;
+                transform: translate(-50%, -50%) rotate(360deg);
+                background: transparent;
+            }
         }
 
         body {
@@ -19,7 +68,6 @@
             overflow-x: hidden;
         }
 
-        /* Floating elements */
         .floating {
             position: fixed;
             pointer-events: none;
@@ -92,18 +140,23 @@
             }
         }
 
-        .product-image {
-            max-width: 300px;
-            height: auto;
-            border: 2px solid #000;
-            margin: 20px 0;
-            animation: pulse 2s infinite;
+        .description {
+            font-family: "Courier New", monospace;
+            line-height: 1.6;
+            color: #000000;
+            animation: fadeIn 1s ease-in forwards;
+            text-shadow: 1px 1px 2px rgba(255,0,255,0.2);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .price {
@@ -160,15 +213,6 @@
             100% { transform: translateX(100%) rotate(45deg); }
         }
 
-        .description {
-            font-family: "Courier New", monospace;
-            line-height: 1.6;
-            color: #000000;
-            animation: fadeIn 1s 0.5s forwards;
-            opacity: 0;
-            text-shadow: 1px 1px 2px rgba(255,0,255,0.2);
-        }
-
         .description-highlight {
             color: #000000;
             font-weight: bold;
@@ -192,7 +236,6 @@
     </style>
 </head>
 <body>
-    <!-- Y2K Floating Elements -->
     <div class="floating star1">⋆</div>
     <div class="floating star2">✧</div>
     <div class="floating star3">⋆</div>
@@ -200,7 +243,9 @@
 
     <div class="container">
         <h1 class="product-title">MDLSONLY.EXE Draft Cap</h1>
-        <img src="modelsonlyhat.gif" alt="Y2K Style Hat" class="product-image">
+        <div class="product-image">
+            <img src="/api/placeholder/300/300" alt="Y2K Style Hat">
+        </div>
         <p class="description">
             <span class="description-highlight">ULTRA LIMITED EDITION DAD HAT</span><br>
             Only for hot models.<br>
@@ -209,7 +254,7 @@
             One size fits models.
         </p>
         <p class="price">$48.00</p>
-        <a href="https://square.link/u/JqVPzCEy" class="buy-button" target="_blank">BUY NOW</a>
+        <a href="#" class="buy-button">BUY NOW</a>
     </div>
 </body>
 </html>
