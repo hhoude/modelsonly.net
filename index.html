@@ -219,6 +219,78 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
+        .media-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ff69b4;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 
+        0 0 5px #ff00ff,
+        0 0 10px #00ffff;
+    animation: glow 2s infinite alternate;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-button {
+    background: transparent;
+    border: 2px solid #ff69b4;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.player-button:hover {
+    transform: scale(1.1);
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+
+.player-label {
+    font-family: "Courier New", monospace;
+    color: #ff00ff;
+    font-size: 12px;
+    font-weight: bold;
+    animation: blink 1s infinite alternate;
+}
+
+input[type="range"] {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: linear-gradient(to right, #ff69b4, #ff00ff);
+    border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: 2px solid #ff69b4;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
     </style>
 </head>
 <body>
@@ -244,3 +316,15 @@
     </div>
 </body>
 </html>
+<div class="media-player">
+    <audio id="bgMusic" autoplay loop>
+        <source src="your-audio-file.mp3" type="audio/mpeg">
+    </audio>
+    <div class="player-controls">
+        <button onclick="document.getElementById('bgMusic').play()" class="player-button">▶️</button>
+        <button onclick="document.getElementById('bgMusic').pause()" class="player-button">⏸️</button>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5" 
+               oninput="document.getElementById('bgMusic').volume = this.value">
+        <div class="player-label">✧ NOW PLAYING ✧</div>
+    </div>
+</div>
