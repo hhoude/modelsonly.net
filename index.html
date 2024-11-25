@@ -59,17 +59,16 @@
 <body>
     <div class="container">
         <h1 class="product-title">MDLSONLY.EXE Draft Cap</h1>
-        <img src="modelsonlyhat.gif" alt="Y2K Style Hat" class="product-image">
-        <p class="description">Ultra Limited Edition Draft Baseball Cap. It's not even good. It's not ready.<br>One Size Should Fit</p>
-        <p class="price">$48.00</p>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="h.houde@me.com">
-            <input type="hidden" name="item_name" value="MDLSONLY.EXE Draft Cap">
-            <input type="hidden" name="amount" value="48.00">
-            <input type="hidden" name="currency_code" value="USD">
-            <input type="submit" value="BUY NOW" class="buy-button">
-        </form>
+        <img src="images/hat1.jpg" alt="Y2K Style Hat" id="mainImage" class="product-image">
+        <div class="thumbnail-container">
+            <img src="images/hat1.jpg" alt="Hat View 1" class="thumbnail" onclick="changeImage('hat1.jpg')">
+            <img src="images/hat2.jpg" alt="Hat View 2" class="thumbnail" onclick="changeImage('hat2.jpg')">
+            <img src="images/hat3.jpg" alt="Hat View 3" class="thumbnail" onclick="changeImage('hat3.jpg')">
+            <img src="images/hat4.jpg" alt="Hat View 4" class="thumbnail" onclick="changeImage('hat4.jpg')">
+        </div>
+        <p class="description">Limited Edition Digital Era Hat<br>One Size Fits Most</p>
+        <p class="price">$25.00</p>
+        <a href="https://square.link/u/JqVPzCEy" class="buy-button" target="_blank">BUY NOW</a>
     </div>
 </body>
 </html>
